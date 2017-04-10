@@ -4,7 +4,6 @@
       <MyHeader :seller='seller'></MyHeader>
     </div>
     <div class="nav">
-      我是导航
       <div class='nav-item'>
         <router-link to="/goods">商品</router-link>
       </div>
@@ -17,7 +16,6 @@
     </div>
     <router-view></router-view>
     <div class="content">
-      我是内容
     </div>
   </div>
 </template>
@@ -55,5 +53,6 @@
       width:100%;
       height: 40px;
       line-height: 40px;
+      text-align: center;
     }
 </style>

@@ -26,7 +26,7 @@
      		<div class="wrap_content clearfix">
      		    <p>{{seller.name}}</p>
      		    <!-- star组件 -->
-     			<star :size="48" :score='3.8'></star>
+     			<Star :size="48" :score='3.8'></Star>
 <!-- 优惠信息 -->
                 <div class="discount_flex">
                 	<div class="line"></div>
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-  import star from '../star/star.vue'
+  import Star from '../Star/Star.vue'
     export default{
     	name:"MyHeader",
     	props:{
@@ -65,7 +65,7 @@
     		}
     	},
     	components:{
-    		'star':star
+    		'Star':Star
     	},
     	data(){
     		return {
