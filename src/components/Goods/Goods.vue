@@ -26,21 +26,32 @@
       						<span>￥{{food.price}}</span>
       						<span class="food_oldPrice">{{food.oldPrice}}</span>
       					</div>
+        <!-- Cartcontral组件 -->
+                <div class='cartcontral_wrap'>
+                  <Cartcontral :food="food"></Cartcontral>
+                </div>
       				</div>
       				</li>
       			</ul>
       		</li>
       	</ul>
       </div>
+      <Shopcart :minPrice="seller.minPrice" :deliveryPrice="seller.deliveryPrice"></Shopcart>
   </div>
-
+  
 </template>
 
 <script>
 import BScroll from 'better-scroll';
+import Shopcart from '../Shopcart/Shopcart.vue'
+import Cartcontral from '../Cartcontral/Cartcontral.vue'
 const ERR_OK=0;
    export default{
    	name:"Goods",
+    components:{
+      'Shopcart':Shopcart,
+      'Cartcontral':Cartcontral
+    },
     props:{
     	seller:{
     		type:Object
@@ -89,7 +100,7 @@ const ERR_OK=0;
             });
              this.foodScroll.on('scroll', (pos) => {
                this.scrollY=Math.abs(Math.floor(pos.y));
-               console.log(this.scrollY);
+               //console.log(this.scrollY);
             });
              let menuScroll= new BScroll(this.$refs.menuWrap, {
               click:true
@@ -120,7 +131,7 @@ const ERR_OK=0;
 .goods{margin:0 auto;width:100%;display: flex;overflow: hidden;position: absolute;top: 191px;bottom: 46px;}
 .menu_wrap{flex:0 0 80px;width: 80px;}
 .foods_wrap{flex:1;overflow: hidden;height: 100%;}
-.food_display{display: inline-block;width: 100%;}
+.food_display{display: inline-block;width: 100%;position: relative;}
 /*food详细信息的样式*/
 .food_li{padding:0 18px 18px 18px;}
 .food_item_name{background-color: #f3f5f7;margin-right: -18px;margin-left: -18px;padding:0 12px 0 12px;line-height: 26px;font-size: 12px;color:rgb(147,153,159);}
@@ -137,4 +148,6 @@ const ERR_OK=0;
 .menu_li{line-height: 12px;background-color:#f3f5f7;
 font-size: 12px;font-weight: 400; padding: 21px 0 21px 12px;border-bottom:1px solid rgba(7,17,27,0.1);}
 .current{background-color:orange; }
+/*定义加减号的定位*/
+.cartcontral_wrap{position: absolute;right:0;bottom:0;}
 </style>

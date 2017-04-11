@@ -106,7 +106,7 @@ overflow: hidden;height: 28px;}
 width:22px;height: 12px;display: inline-block;vertical-align: middle;}
 .note_text{margin-left: 4px;font-size: 10px;line-height: 28px;text-overflow: ellipsis;overflow: hidden;}
 /*遮罩层,这里用fixed绝对定位*/
-.black{background-color: rgba(7,17,27,0.8);height: 100%;width:100%;z-index: 100;position: fixed;left:0;top:0;color:white;}
+.black{background-color: rgba(7,17,27,0.8);height: 100%;width:100%;z-index: 100;position: fixed;left:0;top:0;color:white;z-index: 102;}
 /*sticky footer布局的方法*/
 .wrap{min-height: 100%;}
 .wrap_content{padding-top:64px;padding-bottom: 64px;}
