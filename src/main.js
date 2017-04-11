@@ -6,6 +6,7 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import routerConfig from './router.config.js'
+import Bscroll from 'better-scroll'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
