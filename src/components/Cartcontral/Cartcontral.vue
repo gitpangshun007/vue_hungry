@@ -1,6 +1,6 @@
 <template>
 	<div class="cartcontral">
-	  <transition enter-active-class='animated bounce' leave-active-class="animated slideOutDown">
+	  <transition enter-active-class='animated bounce' leave-active-class="animated wobble">
 		<div class="decrease" v-show='food.count>0' @click.stop.prevent="subCount" ></div>
 	  </transition>
 		<div class="countNumber" v-show="food.count>0">{{food.count}}</div>
@@ -10,7 +10,6 @@
 
 <script>
   import Vue from 'Vue'
-  import '.3.5.2@animate.css'
 	export default{
 		name:"Cartcontral",
 		props:{
@@ -29,7 +28,7 @@
            }else{
            	this.food.count++;
            }
-            this.$emit('add', event.target);
+            this.$root.eventHub.$emit('add', event.target);
           },
           subCount(event){
           	if(!event._constructed){

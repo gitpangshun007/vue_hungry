@@ -36,7 +36,7 @@
       		</li>
       	</ul>
       </div>
-      <Shopcart :minPrice="seller.minPrice" :deliveryPrice="seller.deliveryPrice"></Shopcart>
+      <Shopcart ref='Shopcart' :minPrice="seller.minPrice" :deliveryPrice="seller.deliveryPrice"></Shopcart>
   </div>
   
 </template>
@@ -69,6 +69,10 @@ const ERR_OK=0;
            response=response.body;
            if(response.errorno==ERR_OK){
              this.goods=response.data;
+    /*监听从Cartcontral传来的add事件。*/
+             this.$root.eventHub.$on('add',(target) =>{
+              this._drop(target);
+             })
              this.$nextTick(() => {
              	this._initScroll();
               this._getHeight();
@@ -92,6 +96,12 @@ const ERR_OK=0;
       }
     },
     methods:{
+      _drop(target){
+    /*调用Shopcart组件中的drop函数,并异步执行*/
+        this.$nextTick(() => {
+          this.$refs.Shopcart.drop(target);
+        });
+      },
     	_initScroll(){
        /* 这里用this.$refs提取DOM元素*/
              this.foodScroll= new BScroll(this.$refs.foodWrap, {

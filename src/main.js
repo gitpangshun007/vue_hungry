@@ -18,5 +18,8 @@ const router=new VueRouter(routerConfig);
 new Vue({
   router,
   template: '<App/>',
-  render: h => h(App)
+  render: h => h(App),
+  data:{
+  	eventHub:new Vue()
+  }
 }).$mount('#app')
