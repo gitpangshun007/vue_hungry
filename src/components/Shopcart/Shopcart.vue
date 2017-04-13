@@ -1,16 +1,22 @@
 <template>
-	<div class='shopcart'>
+	<div class='shopcart' @click="togglelist">
+	<!-- 定义mask遮罩层 -->
+	 <transition enter-active-class='animated fadeIn' leave-active-class="animated fadeOut">
+	 <div class="mask" v-show='listshow'></div>
+	 </transition>
 		<div class="shopcart_left">
 			<div class="shopcart_logo">
-				<span><img src="./shopcart.png" height="24" width="24" alt="购物车"></span>
+				<span><img src="./shopcart.png" height="24" width="24" alt="购物车">
+				</span>
 			</div>
 			<div class="shopcart_price">￥{{totalPrice}}</div>
 			<div class="shopcart_delivery">另需配送费￥{{deliveryPrice}}元</div>
 		</div>
 		<div class="shopcart_right">
-			<div class='mini_price' :class="{'greenPrice':totalPrice>=20}">￥{{subPrice}}</div>
+			<div class='mini_price' :class="{'greenPrice':totalPrice>=20}" @click.stop.prevent='pay'>￥{{subPrice}}
+			</div>
 		</div>
-		<div :class="{'total_count':totalCount>0}">{{totalCount}}</div>
+		<div :class="{'total_count':totalCount>0}" v-show='totalCount>0'>{{totalCount}}</div>
 <!-- 定义小球 -->
         <div class="ball_container">
         	<div v-for="ball in balls" v-show="ball.show">
@@ -22,19 +28,43 @@
         		</transition>
         	</div>
         </div>
+<!-- 定义购物车弹出层 -->
+   <transition enter-active-class='animated bounce' leave-active-class="animated wobble">
+                <div class='shopcartlist' v-show='listshow'>
+                	<div class="list_header">
+                		<h1>购物车</h1>
+                		<h2 class="h2" @click.stop.prevent="empty">清空</h2>
+                	</div>
+                	<div class='list_content' ref='listcontent'>
+                		<ul>
+                			<li class='list_food' v-for='food in selectfoods'>
+                				<span class="name">{{food.name}}</span>
+                				<span class='price'>￥{{food.price * food.count}}</span>
+                				<div class="cartcontral_wrapper">
+                					<Cartcontral :food="food"></Cartcontral>
+                				</div>
+                			</li>
+                		</ul>
+                	</div>
+                </div>
+   </transition>
 	</div>
 	
 </template>
 
 <script>
-//import cartcontrol from '../Cartcontral/Cartcontral.vue';
+import BScroll from 'better-scroll';
+import Cartcontral from '../Cartcontral/Cartcontral.vue';
 	export default{
 		name:'Shopcart',
+		components:{
+			'Cartcontral':Cartcontral
+		},
 		props:{
 			selectfoods:{
                 type:Array,
                 default(){
-                	return [{price:10,count:1}];
+                	return [];
                 }
 			},
 			minPrice:{
@@ -97,6 +127,24 @@
           ball.show = false;
           el.style.display = 'none';
         }
+      },
+      togglelist(){
+      	if(!this.totalCount){
+      		return ;
+      	}
+      	this.fold=!this.fold;
+      },
+      empty(){
+      	this.selectfoods.forEach((food) => {
+      		food.count=0;
+      	});
+      },
+      pay(){
+      	if(this.totalPrice<20){
+      		return ;
+      	}else{
+      		alert('请支付' + this.totalPrice + '元');
+      	}
       }
 		},
 		data(){
@@ -116,7 +164,8 @@
 				{
 					show:false
 				}],
-				dropBalls:[]
+				dropBalls:[],
+				fold:true
 			}
 		},
 		computed:{
@@ -145,15 +194,34 @@
                 	return '结算';
                 	
                 }
+			},
+			listshow(){
+               if(!this.totalCount){
+               	this.fold=true;
+               	return false;
+               }
+               let show=!this.fold;
+               if (show) {
+          this.$nextTick(() => {
+            if (!this.scroll) {
+              this.scroll = new BScroll(this.$refs.listcontent, {
+                click: true
+              });
+            } else {
+              this.scroll.refresh();
+            }
+          });
+        }
+               return show;
 			}
 		}
 	}
 </script>
 
 <style>
-	.shopcart{width:100%;height:48px;background-color: #141d27;z-index: 100;position: fixed;bottom:0;left:0;display:flex;}
+	.shopcart{width:100%;height:48px;background-color: #141d27;position: fixed;bottom:0;left:0;display:flex;z-index: 50;}
 	.shopcart_right{flex:0 0 105px;}
-	.shopcart_left{flex:1;}
+	.shopcart_left{flex:1;background-color: #141d27;}
 	/*logo样式，注意logo的position写法*/
 	.shopcart_logo{width:38px;height: 38px;background-color:#2b343c;position: relative;top:-10px;margin:0 12px;border:6px solid #141d27;border-radius: 38px;text-align: center;display: inline-block;line-height: 38px;}
 	.shopcart_logo span{display: inline-block;}
@@ -171,4 +239,20 @@
     	/*ball的样式*/
     	.ball{position: fixed;bottom:22px;left:32px;transition: all 0.6s cubic-bezier(0.49,-0.29,0.75,0.41);}
     	.inner{width: 16px;height: 16px;background-color: orange;transition: all 0.6s linear;display: block;border-radius: 50%;}
+    	/*购物车折叠层的样式,注意这里的高度要用max-height*/
+    	.shopcartlist{position: absolute;left:0;bottom:0;width:100%;max-height:305px;z-index: -1;}
+    	.list_header{width: 100%;height: 40px;line-height: 40px;background-color: #f3f5f7;padding:0 18px;border-bottom:1px solid rgba(7,17,27,0.1);}
+    	.list_header h1{font-size: 14px;color:rgb(7,17,27);}
+        .list_content{overflow: hidden;max-height: 218px;background: #fff}
+    	.empty{display: inline-block;border:1px solid red;}
+    	.list_food{width:90%;margin:0 auto;border-bottom:1px solid rgba(7,17,27,0.1);padding: 12px 0 12px 0;display: block;position: relative;}
+    	.name{display: inline-block;font-size: 14px;color:rgb(7,17,27);line-height: 24px;}
+    	.price{display: inline-block;font-size: 14px;color:rgb(7,17,27);line-height: 24px;position: absolute;right:72px;bottom:12px;}
+    	.cartcontral_wrapper{display: inline-block;margin-left: 20px;position: absolute;right: 0;top:12px;}
+    	.h2{display: inline-block;position: absolute;right: 12px;top:0;font-size: 12px;color:rgb(0,160,220);}
+    	/*mask遮罩层样式*/
+    	.mask{position: fixed;background-color: rgba(7,17,27,0.6);-webkit-filter: blur(10px);-ms-filter: blur(10px);-moz-filter: blur(10px);
+    		-o-filter: blur(10px);height: 100%;width:100%;top:0;left:0;z-index: -2;}
+
+
 </style>
