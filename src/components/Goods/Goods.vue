@@ -13,7 +13,7 @@
       			<h2 class='food_item_name'>{{item.name}}</h2>
       			<ul>
 <!-- 这里是重点 -->
-      				<li v-for='(food,index) in item.foods' class='food_display'>
+      				<li v-for='(food,index) in item.foods' class='food_display' @click='selectFood(food,$event)'>
       					<div class='item_img fl'><img :src="food.icon" alt="" width="64" height="64"></div>
       				<div class="food_detail fl">
       					<h2>{{food.name}}</h2>
@@ -37,6 +37,7 @@
       	</ul>
       </div>
       <Shopcart ref='Shopcart' :minPrice="seller.minPrice" :deliveryPrice="seller.deliveryPrice" :selectfoods='selectfoods'></Shopcart>
+      <Food :food='selectedFood' ref='food'></Food>
   </div>
   
 </template>
@@ -45,12 +46,14 @@
 import BScroll from 'better-scroll';
 import Shopcart from '../Shopcart/Shopcart.vue'
 import Cartcontral from '../Cartcontral/Cartcontral.vue'
+import Food from '../Food/Food.vue'
 const ERR_OK=0;
    export default{
    	name:"Goods",
     components:{
       'Shopcart':Shopcart,
-      'Cartcontral':Cartcontral
+      'Cartcontral':Cartcontral,
+      'Food':Food
     },
     props:{
     	seller:{
@@ -61,7 +64,8 @@ const ERR_OK=0;
     	return {
     		goods:[],
         heightList:[],
-        scrollY:0
+        scrollY:0,
+        selectedFood:{}
     	}
     },
     created(){
@@ -142,9 +146,17 @@ const ERR_OK=0;
         let foodList=this.$refs.foodlist;
         let el=foodList[index];
         this.foodScroll.scrollToElement(el,300);
+      },
+      selectFood(food,event){
+        if(!event._constructed){
+          return ;
+        }
+        this.selectedFood=food;
+        this.$refs.food.show();
+        }
       }
     }
-   }
+   
 </script>
  
 <style>
@@ -172,3 +184,4 @@ font-size: 12px;font-weight: 400; padding: 21px 0 21px 12px;border-bottom:1px so
 /*定义加减号的定位*/
 .cartcontral_wrap{position: absolute;right:0;bottom:0;}
 </style>
+
