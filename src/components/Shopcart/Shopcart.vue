@@ -13,7 +13,7 @@
 			<div class="shopcart_delivery">另需配送费￥{{deliveryPrice}}元</div>
 		</div>
 		<div class="shopcart_right">
-			<div class='mini_price' :class="{'greenPrice':totalPrice>=20}" @click.stop.prevent='pay'>￥{{subPrice}}
+			<div class='mini_price' :class="{'greenPrice':totalPrice>=20}" @click.stop.prevent='pay'>{{subPrice}}
 			</div>
 		</div>
 		<div :class="{'total_count':totalCount>0}" v-show='totalCount>0'>{{totalCount}}</div>

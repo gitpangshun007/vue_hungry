@@ -9,6 +9,7 @@
     const CLS_OFF='off';
     const CLS_HALF='half';
 	export default{
+		name:'Star',
 		props:{
 			size:{
 				type:Number
@@ -28,7 +29,7 @@
             for(let i=0;i<newScore;i++){
             	myData.push(CLS_ON);
             }
-                     score=this.score;
+            score=this.score;
             let fudian=(score.toString()).indexOf('.');
             let stringScore=score.toString();
             console.log(fudian);
@@ -51,10 +52,22 @@
 	.star{font-size: 0;text-align: center;}
 /*设置总体公用的star-item的样式*/
 	.star-item{display: inline-block;background-repeat: no-repeat;}
-	/*设置48尺寸的star-tiem样式*/
+	/*设置48尺寸的star-item样式*/
 	.star-48 .star-item{width: 24px;height: 24px;}
 	/*设置星星的状态*/
-	.on{background: url('star48_on@3x.png') no-repeat left top;background-size: 24px 24px;border:1px solid orange;width:24px;height: 24px;}
-	.half{background: url('star48_half@3x.png') no-repeat left top;background-size: 24px 24px;border:1px solid orange;width:24px;height: 24px;}
-	.off{background: url('star48_off@3x.png') no-repeat left top;background-size: 24px 24px;border:1px solid orange;width:24px;height: 24px;}
+	.star-48 .on{background: url('star48_on@3x.png') no-repeat left top;background-size: 24px 24px;border:1px solid orange;width:24px;height: 24px;}
+	.star-48 .half{background: url('star48_half@3x.png') no-repeat left top;background-size: 24px 24px;border:1px solid orange;width:24px;height: 24px;}
+	.star-48 .off{background: url('star48_off@3x.png') no-repeat left top;background-size: 24px 24px;border:1px solid orange;width:24px;height: 24px;}
+	/*设置36尺寸的star-tiem样式*/
+	.star-36 .star-item{width: 18px;height: 18px;}
+	/*设置星星的状态*/
+	.star-36 .on{background: url('star36_on@3x.png') no-repeat left top;background-size: 18px 18px;border:1px solid orange;width:18px;height: 18px;}
+	.star-36 .half{background: url('star36_half@3x.png') no-repeat left top;background-size: 18px 18px;border:1px solid orange;width:18px;height: 24px;}
+	.star-36 .off{background: url('star36_off@3x.png') no-repeat left top;background-size: 18px 18px;border:1px solid orange;width:18px;height: 18px;}
+	/*设置24尺寸的star-tiem样式*/
+	.star-24 .star-item{width: 10px;height: 10px;}
+	/*设置星星的状态*/
+	.star-24 .on{background: url('star24_on@3x.png') no-repeat left top;background-size: 10px 10px;border:1px solid orange;width:10px;height: 10px;}
+	.star-24 .half{background: url('star24_half@3x.png') no-repeat left top;background-size: 10px 10px;border:1px solid orange;width:10px;height: 10px;}
+	.star-24 .off{background: url('star24_off@3x.png') no-repeat left top;background-size: 10px 10px;border:1px solid orange;width:10px;height: 10px;}
 </style>

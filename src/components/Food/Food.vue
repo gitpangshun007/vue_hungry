@@ -33,8 +33,25 @@
 				<div class="rate_content">
 					<div class="rate_title">商品评价</div>
 					<div class='ratingselect_wrap'>
-						<Ratingselect :selectType='selectType' :onlycontent='onlycontent' :desc='desc' :ratings='food.ratings' @select='select'></Ratingselect>
+						<Ratingselect :selectType='selectType' :onlycontent='onlycontent' :desc='desc' :ratings='food.ratings' @select='select' @toggleRight='toggleRight'></Ratingselect>
 					</div>
+				</div>
+				<div class="ratingList">
+					<ul v-show='food.ratings' class="ratings_ul">
+						<li v-for='rating in food.ratings' class="rating_item" v-show="needShow(rating.rateType,rating.text)">
+							<span class="rating_time">{{rating.rateTime}}</span>
+							<div class="rating_right">
+							<span class="rating_username">{{rating.username}}</span>
+							<span class="rating_avatar"><img :src="rating.avatar" width='12' height='12' alt=""></span>
+							</div>
+							<div class="rating_content">
+								<span class="rating_icon" :class="{'rating_positive':rating.rateType==0,'rating_negative':rating.rateType==1}"></span>
+								<span class="rating_text">{{rating.text}}</span>
+							</div>
+
+						</li>
+					</ul>
+					
 				</div>
 			</div>
 		</div>
@@ -100,6 +117,23 @@ import Ratingselect from '../Ratingselect/Ratingselect.vue'
 				this.$nextTick(() => {
 					this.scroll.refresh();
 				});
+			},
+			toggleRight(){
+				this.onlycontent=!this.onlycontent;
+				this.$nextTick(() => {
+					this.scroll.refresh();
+				});
+			},
+			needShow(type,text){
+				if(this.onlycontent && !text){
+					return false;
+				}
+				if(this.selectType==ALL){
+					return true;
+				}else{
+					return type==this.selectType;
+				}
+
 			}
 		}
 	}
@@ -138,4 +172,15 @@ import Ratingselect from '../Ratingselect/Ratingselect.vue'
     .introduce_desc{padding-top:6px;font-size: 12px;font-weight: 200;color:rgb(147,153,159);line-height: 24px;}
     /*商品评价样式*/
      .rate_content{margin:18px;}
+    /*商品评价列表样式*/
+    .ratings_ul{margin-top:-18px;}
+    .rating_item{padding:16px 18px;position: relative;border-bottom:1px solid rgba(7,17,27,0.1);width:85%;margin:0 auto;}
+    .rating_time{display: inline-block;font-size: 10px;color:rgb(147,153,159);line-height: 12px;}
+    .rating_right{position: absolute;right:18px;top:16px;}
+    .rating_username{display: inline-block;font-size: 10px;color:rgb(147,153,159);line-height: 12px;margin-right: 6px;}
+    .rating_avatar{border-radius: 50%;display: inline-block;width: 11px;height: 11px;overflow: hidden;}
+    .rating_icon{margin-top: 6px;display: inline-block;width: 12px;height: 12px;line-height: 16px;}
+    .rating_positive{background: url('./yes.png') no-repeat left top;background-size: 12px;}
+    .rating_negative{background: url('./no.png') no-repeat left top;background-size: 12px;}
+    .rating_text{display: inline-block;margin-left: 4px;font-size: 12px;color:rgb(7,17,27);line-height: 16px;}
 </style>

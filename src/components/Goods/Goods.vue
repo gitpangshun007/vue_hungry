@@ -1,4 +1,4 @@
-<!-- 这里用到了v-for当中的数据嵌套，重点看 -->
+
 <template>
   <div class="goods">
       <div class="menu_wrap" ref='menuWrap'>
@@ -8,11 +8,9 @@
       </div>
       <div class="foods_wrap" ref='foodWrap'>
       	<ul>
-<!-- 这里是重点 item.name就等同于goods[index].name-->
       		<li v-for='(item,index) in goods' class='food_li' ref='foodlist'>
       			<h2 class='food_item_name'>{{item.name}}</h2>
       			<ul>
-<!-- 这里是重点 -->
       				<li v-for='(food,index) in item.foods' class='food_display' @click='selectFood(food,$event)'>
       					<div class='item_img fl'><img :src="food.icon" alt="" width="64" height="64"></div>
       				<div class="food_detail fl">
@@ -26,7 +24,6 @@
       						<span>￥{{food.price}}</span>
       						<span class="food_oldPrice">{{food.oldPrice}}</span>
       					</div>
-        <!-- Cartcontral组件 -->
                 <div class='cartcontral_wrap'>
                   <Cartcontral :food="food"></Cartcontral>
                 </div>
@@ -151,6 +148,7 @@ const ERR_OK=0;
         if(!event._constructed){
           return ;
         }
+        console.log('click');
         this.selectedFood=food;
         this.$refs.food.show();
         }

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="header">
-      <MyHeader :seller='seller'></MyHeader>
+      <My-header :seller='seller'></My-header>
     </div>
     <div class="nav">
       <div class='nav-item'>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-    import MyHeader from './components/Header/MyHeader.vue'
+    import MyHeader from './components/MyHeader/MyHeader.vue'
     export default{
       data(){
          return{
