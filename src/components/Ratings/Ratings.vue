@@ -38,7 +38,7 @@
      <!-- 评价列表 -->
      <div class="newRating_wrap">
      	<ul class="newRating_ul">
-     		<li v-for='rating in ratings' class="newRating_li">
+     		<li v-for='rating in ratings' class="newRating_li" v-show='needshow(rating.rateType,rating.text)'>
      		 <div class="newRating_avatar_wrap">	
      			<div class="newRating_avatar"><img :src="rating.avatar" alt="" width="28" height="28"></div>
      		 </div>
@@ -86,7 +86,7 @@ const ERR_OK=0;
    	data(){
    		return {
    			selectType:ALL,
-   			onlycontent:true,
+   			onlycontent:false,
    			ratings:[]
    		}
    	},
@@ -95,9 +95,13 @@ const ERR_OK=0;
             response=response.body;
             this.ratings=response.data;
             this.$nextTick(() => {
-            	this.scroll=new BScroll(this.$refs.ratings,{
-            		click:true
+            	if(!this.scroll){
+            	   this.scroll=new BScroll(this.$refs.ratings,{
+            	   click:true
             	});
+            	}else{
+            		this.scroll.refresh();
+            	}
             });
         },(response) => {
         	console.log(response.status);
@@ -111,9 +115,28 @@ const ERR_OK=0;
    	methods:{
      toggleRating(){
      	this.onlycontent=!this.onlycontent;
+     	this.$nextTick(() => {
+		  this.scroll.refresh();
+		});
      },
      selectRating(type){
      	this.selectType=type;
+     	this.$nextTick(() => {
+		  this.scroll.refresh();
+		});
+     },
+     needshow(type,text){
+     	if(this.onlycontent && !text){
+     		return false;
+     	}
+     	if(this.selectType==ALL){
+     		return true;
+     	}else{
+     		return type==this.selectType;
+     	}
+     	this.$nextTick(() => {
+		  this.scroll.refresh();
+		});
      }
    	}
    }

@@ -55,19 +55,19 @@
 	/*设置48尺寸的star-item样式*/
 	.star-48 .star-item{width: 24px;height: 24px;}
 	/*设置星星的状态*/
-	.star-48 .on{background: url('star48_on@3x.png') no-repeat left top;background-size: 24px 24px;border:1px solid orange;width:24px;height: 24px;}
-	.star-48 .half{background: url('star48_half@3x.png') no-repeat left top;background-size: 24px 24px;border:1px solid orange;width:24px;height: 24px;}
-	.star-48 .off{background: url('star48_off@3x.png') no-repeat left top;background-size: 24px 24px;border:1px solid orange;width:24px;height: 24px;}
+	.star-48 .on{background: url('star48_on@3x.png') no-repeat left top;background-size: 24px 24px;width:24px;height: 24px;}
+	.star-48 .half{background: url('star48_half@3x.png') no-repeat left top;background-size: 24px 24px;width:24px;height: 24px;}
+	.star-48 .off{background: url('star48_off@3x.png') no-repeat left top;background-size: 24px 24px;width:24px;height: 24px;}
 	/*设置36尺寸的star-tiem样式*/
 	.star-36 .star-item{width: 18px;height: 18px;}
 	/*设置星星的状态*/
-	.star-36 .on{background: url('star36_on@3x.png') no-repeat left top;background-size: 18px 18px;border:1px solid orange;width:18px;height: 18px;}
-	.star-36 .half{background: url('star36_half@3x.png') no-repeat left top;background-size: 18px 18px;border:1px solid orange;width:18px;height: 24px;}
-	.star-36 .off{background: url('star36_off@3x.png') no-repeat left top;background-size: 18px 18px;border:1px solid orange;width:18px;height: 18px;}
+	.star-36 .on{background: url('star36_on@3x.png') no-repeat left top;background-size: 18px 18px;width:18px;height: 18px;}
+	.star-36 .half{background: url('star36_half@3x.png') no-repeat left top;background-size: 18px 18px;width:18px;height: 24px;}
+	.star-36 .off{background: url('star36_off@3x.png') no-repeat left top;background-size: 18px 18px;width:18px;height: 18px;}
 	/*设置24尺寸的star-tiem样式*/
 	.star-24 .star-item{width: 10px;height: 10px;}
 	/*设置星星的状态*/
-	.star-24 .on{background: url('star24_on@3x.png') no-repeat left top;background-size: 10px 10px;border:1px solid orange;width:10px;height: 10px;}
-	.star-24 .half{background: url('star24_half@3x.png') no-repeat left top;background-size: 10px 10px;border:1px solid orange;width:10px;height: 10px;}
-	.star-24 .off{background: url('star24_off@3x.png') no-repeat left top;background-size: 10px 10px;border:1px solid orange;width:10px;height: 10px;}
+	.star-24 .on{background: url('star24_on@3x.png') no-repeat left top;background-size: 10px 10px;width:10px;height: 10px;}
+	.star-24 .half{background: url('star24_half@3x.png') no-repeat left top;background-size: 10px 10px;width:10px;height: 10px;}
+	.star-24 .off{background: url('star24_off@3x.png') no-repeat left top;background-size: 10px 10px;width:10px;height: 10px;}
 </style>

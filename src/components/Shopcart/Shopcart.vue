@@ -29,7 +29,7 @@
         	</div>
         </div>
 <!-- 定义购物车弹出层 -->
-   <transition enter-active-class='animated bounce' leave-active-class="animated wobble">
+   <transition enter-active-class='animated zoomIn' leave-active-class="animated zoomOut">
                 <div class='shopcartlist' v-show='listshow'>
                 	<div class="list_header">
                 		<h1>购物车</h1>
@@ -241,7 +241,7 @@ import Cartcontral from '../Cartcontral/Cartcontral.vue';
     	.inner{width: 16px;height: 16px;background-color: orange;transition: all 0.6s linear;display: block;border-radius: 50%;}
     	/*购物车折叠层的样式,注意这里的高度要用max-height*/
     	.shopcartlist{position: absolute;left:0;bottom:0;width:100%;max-height:305px;z-index: -1;}
-    	.list_header{width: 100%;height: 40px;line-height: 40px;background-color: #f3f5f7;padding:0 18px;border-bottom:1px solid rgba(7,17,27,0.1);}
+    	.list_header{width: 90%;height: 40px;line-height: 40px;background-color: #f3f5f7;padding:0 18px;border-bottom:1px solid rgba(7,17,27,0.1);}
     	.list_header h1{font-size: 14px;color:rgb(7,17,27);}
         .list_content{overflow: hidden;max-height: 218px;background: #fff}
     	.empty{display: inline-block;border:1px solid red;}

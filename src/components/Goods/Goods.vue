@@ -178,7 +178,7 @@ const ERR_OK=0;
 .menu_wrap{overflow: hidden;}
 .menu_li{line-height: 12px;background-color:#f3f5f7;
 font-size: 12px;font-weight: 400; padding: 21px 0 21px 12px;border-bottom:1px solid rgba(7,17,27,0.1);}
-.current{background-color:orange; }
+.current{background-color:lightblue; }
 /*定义加减号的定位*/
 .cartcontral_wrap{position: absolute;right:0;bottom:0;}
 </style>

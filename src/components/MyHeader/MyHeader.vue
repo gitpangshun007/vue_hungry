@@ -21,6 +21,7 @@
      	<span class='note_img'></span>
      	<span class='note_text'>{{seller.bulletin}}</span>
      </div>
+     <transition enter-active-class='animated fadeInDown' leave-active-class='animated fadeOutUp'>
       <div class="black" v-show="blackShow">
      	<div class="wrap">
      		<div class="wrap_content clearfix">
@@ -50,6 +51,7 @@
      	</div>
      	<div class="black_footer" @click="blackShow=false"><img src="./X.png" height="32" width="32" alt=""></div>
       </div>
+    </transition>
       
   </div>
 

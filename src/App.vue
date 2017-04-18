@@ -57,5 +57,7 @@
       line-height: 40px;
       text-align: center;
     }
+    .nav-item a{color:#000;display: block;font-weight: 600;font-size: 14px;}
+    .nav-item a:hover{color:#00b4ff;}
     #app{overflow: hidden;height: 100%;}
 </style>

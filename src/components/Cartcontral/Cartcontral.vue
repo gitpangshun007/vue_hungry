@@ -1,6 +1,6 @@
 <template>
 	<div class="cartcontral">
-	  <transition enter-active-class='animated bounce' leave-active-class="animated wobble">
+	  <transition enter-active-class='animated rollIn' leave-active-class="animated rollOut">
 		<div class="decrease" v-show='food.count>0' @click.stop.prevent="subCount" ></div>
 	  </transition>
 		<div class="countNumber" v-show="food.count>0">{{food.count}}</div>
