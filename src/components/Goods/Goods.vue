@@ -136,7 +136,6 @@ const ERR_OK=0;
               Height+=foodList[i].clientHeight;
               this.heightList.push(Height);
            }
-           console.log(this.heightList);
       },
       clickMenu(index){
         let menuList=this.$refs.menuList
@@ -148,7 +147,6 @@ const ERR_OK=0;
         if(!event._constructed){
           return ;
         }
-        console.log('click');
         this.selectedFood=food;
         this.$refs.food.show();
         }

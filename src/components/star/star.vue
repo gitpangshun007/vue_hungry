@@ -32,7 +32,6 @@
             score=this.score;
             let fudian=(score.toString()).indexOf('.');
             let stringScore=score.toString();
-            console.log(fudian);
             if(fudian!=-1){
             	let myScore=stringScore.split('');
             	if(parseInt(myScore[myScore.length-1])<5){

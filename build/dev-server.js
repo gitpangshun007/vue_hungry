@@ -22,7 +22,7 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 //读取data.json数据
-var appData=require('../static/data.json')
+var appData=require('../dist/static/data.json')
 var seller=appData.seller;
 var goods=appData.goods;
 var ratings=appData.ratings;

@@ -84,7 +84,6 @@ import Cartcontral from '../Cartcontral/Cartcontral.vue';
             ball.show = true;
             ball.el = el;
             this.dropBalls.push(ball);
-            console.log(this.dropBalls);
    /*return相当于break退出循环*/
             return;
           }
@@ -238,7 +237,7 @@ import Cartcontral from '../Cartcontral/Cartcontral.vue';
     	.greenPrice{background-color: green;color:#fff;}
     	/*ball的样式*/
     	.ball{position: fixed;bottom:22px;left:32px;transition: all 0.6s cubic-bezier(0.49,-0.29,0.75,0.41);}
-    	.inner{width: 16px;height: 16px;background-color: orange;transition: all 0.6s linear;display: block;border-radius: 50%;}
+    	.inner{width: 16px;height: 16px;transition: all 0.6s linear;display: block;border-radius: 50%;}
     	/*购物车折叠层的样式,注意这里的高度要用max-height*/
     	.shopcartlist{position: absolute;left:0;bottom:0;width:100%;max-height:305px;z-index: -1;}
     	.list_header{width: 90%;height: 40px;line-height: 40px;background-color: #f3f5f7;padding:0 18px;border-bottom:1px solid rgba(7,17,27,0.1);}
