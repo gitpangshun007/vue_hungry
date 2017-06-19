@@ -1,21 +1,16 @@
 # hungry_cli
 
-> A Vue.js project
+> 用Vue框架完成的‘饿了么’移动端项目。
 
-## Build Setup
+## 项目运行方法
 
 ``` bash
-# install dependencies
+# install dependencies clone后进入cmd，进入文件夹安装依赖包
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8080 运行npm run dev 来运行程序，方可在浏览器查看运行效果
 npm run dev
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
